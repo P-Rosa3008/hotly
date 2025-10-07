@@ -72,12 +72,8 @@ class _SeparateEngineService extends TestService {
       final rawHandle = handle.toRawHandle();
       final resultMap = await _native.execute(runTestsFromRawCallback, rawHandle);
 
-      if (resultMap != null) {
-        update(TestGroupResults.fromMap(resultMap));
-      } else {
-        debugPrint('[hottie] ⚠️ retest() returned null resultMap');
-      }
-    } catch (e, st) {
+      update(TestGroupResults.fromMap(resultMap));
+        } catch (e, st) {
       debugPrint('[hottie] ❌ retest() crashed: $e\n$st');
     }
   }
