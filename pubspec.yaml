@@ -1,0 +1,25 @@
+name: hotly
+description: A Flutter package for testing widgets with overlays.
+version: 0.0.1
+homepage: https://github.com/P-Rosa3008/hotly
+authors:
+  - Pedro Rosa
+  - Thiago Evoa
+publish_to: 'https://pub.dev'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.example.hotly
+        pluginClass: HotlyPlugin
+      ios:
+        pluginClass: HotlyPlugin
