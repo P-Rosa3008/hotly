@@ -1,10 +1,7 @@
 name: hotly
-description: A Flutter package for testing widgets with overlays.
-version: 0.0.1
+description: A Flutter package for testing via an isolate improving performance.
+version: 0.1.0
 homepage: https://github.com/P-Rosa3008/hotly
-authors:
-  - Pedro Rosa
-  - Thiago Evoa
 publish_to: 'https://pub.dev'
 
 dependencies:
