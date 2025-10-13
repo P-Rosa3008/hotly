@@ -58,10 +58,7 @@ class _SeparateEngineService extends TestService {
 
     try {
       // Wait until NativeService is ready
-      if (_native.toIsolate == null) {
-        debugPrint('[hottie] waiting for isolate to initialize...');
-        await NativeService.instance.ensureInitialized();
-      }
+      await _native.ensureInitialized();
 
       final handle = PluginUtilities.getCallbackHandle(main);
       if (handle == null) {

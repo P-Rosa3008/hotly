@@ -15,12 +15,3 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-flutter:
-  plugin:
-    platforms:
-      android:
-        package: com.example.hotly
-        pluginClass: HotlyPlugin
-      ios:
-        pluginClass: HotlyPlugin
