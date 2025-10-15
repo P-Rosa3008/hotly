@@ -8,7 +8,7 @@ class TestResultError {
   Map<String, dynamic> toMap() => {'message': message};
 
   factory TestResultError.fromMap(Map<String, dynamic> map) =>
-      TestResultError(map['message']);
+      TestResultError(map['message'] as String);
 }
 
 class TestResult {
@@ -23,9 +23,9 @@ class TestResult {
   };
 
   factory TestResult.fromMap(Map<String, dynamic> map) => TestResult(
-    map['name'],
+    map['name'] as String,
     (map['errors'] as List<dynamic>)
-        .map((e) => TestResultError.fromMap(e))
+        .map((e) => TestResultError.fromMap(e as Map<String, dynamic>))
         .toList(),
   );
 }
@@ -51,15 +51,14 @@ class TestGroupResults {
     'failed': failed.map((e) => e.toMap()).toList(),
     'passed': passed.map((e) => e.toMap()).toList(),
   };
-
   factory TestGroupResults.fromMap(Map<String, dynamic> map) => TestGroupResults(
-    skipped: map['skipped'] ?? 0,
+    skipped: map['skipped'] as int? ?? 0,
     failed: (map['failed'] as List<dynamic>?)
-        ?.map((e) => TestResult.fromMap(e))
+        ?.map((e) => TestResult.fromMap(e as Map<String, dynamic>))
         .toList() ??
         [],
     passed: (map['passed'] as List<dynamic>?)
-        ?.map((e) => TestResult.fromMap(e))
+        ?.map((e) => TestResult.fromMap(e as Map<String, dynamic>))
         .toList() ??
         [],
   );

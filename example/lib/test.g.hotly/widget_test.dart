@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -6,8 +6,4 @@ void main() {
     expect(1 + 1, 3);
   });
 
- /*testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    await tester.pumpWidget(Container());
-    expect(find.byType(Container), findsNWidgets(2));
-  });*/
 }

@@ -43,9 +43,15 @@ class _HottieBinding extends AutomatedTestWidgetsFlutterBinding {
 }
 
 Future<TestGroupResults> runTests(TestMain input) async {
-  if (WidgetsBinding.instance == null) {
+  // Ensure a WidgetsBinding exists in this isolate. The instance getter throws
+// if not yet initialized, so we catch that and create our _HottieBinding.
+  try {
+    // Attempt to access the instance to see if it's initialized.
+    WidgetsBinding.instance;
+  } catch (_) {
     _HottieBinding();
   }
+
   final sw = Stopwatch()..start();
   final reporter = MyReporter();
 

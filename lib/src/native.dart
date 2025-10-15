@@ -3,7 +3,9 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'logger.dart';
 import 'declarer.dart';
 
@@ -53,7 +55,7 @@ class NativeService {
         results = await _channel.invokeMethod(
           'initialize',
           {'handle': handle.toRawHandle()},
-        );
+        ) as Map<dynamic, dynamic>;
       } on MissingPluginException {
         logHottie('[hottie] ⚠️ No native plugin found, using fallback initialization');
         results = {'root': Directory.current.path};
@@ -68,7 +70,10 @@ class NativeService {
 
       if (root != null) {
         final msg = _SetCurrentDirectoryMessage(root);
-        toIsolate!.send(msg);
+        toIsolate!.send({
+          'type': 'setDir',
+          'root': root,
+        });
 
         assert(Directory(msg.root).existsSync(),
         "Directory ${msg.root} doesn't exist");
@@ -124,6 +129,7 @@ void _registerPort(SendPort port, String name) {
 
 @pragma('vm:entry-point')
 Future<void> hottieInner() async {
+  //TestWidgetsFlutterBinding.ensureInitialized();
   logHottie('🔥 hottieInner started');
   window.setIsolateDebugName('hottie');
 

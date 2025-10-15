@@ -2,7 +2,7 @@
 
 import 'dart:ui';
 import 'package:flutter/foundation.dart';
-import 'package:hotly/src/declarer.dart';
+import 'declarer.dart';
 import 'model.dart';
 import 'native.dart';
 
@@ -70,7 +70,7 @@ class _SeparateEngineService extends TestService {
       final resultMap = await _native.execute(runTestsFromRawCallback, rawHandle);
 
       update(TestGroupResults.fromMap(resultMap));
-        } catch (e, st) {
+    } catch (e, st) {
       debugPrint('[hottie] ❌ retest() crashed: $e\n$st');
     }
   }

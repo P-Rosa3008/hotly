@@ -4,24 +4,24 @@ import 'package:flutter/material.dart';
 import 'model.dart';
 import 'service.dart';
 
-class HotlyTestRunner extends StatefulWidget {
+class TestRunner extends StatefulWidget {
   /// Must be a static method
   final VoidCallback main;
   final bool showIndicator;
   final Widget child;
 
-  const HotlyTestRunner({
-    required Key key,
+  const TestRunner({
+    super.key,
     required this.child,
     required this.main,
     this.showIndicator = true,
-  }) : super(key: key);
+  });
 
   @override
-  _HottieTestRunnerState createState() => _HottieTestRunnerState();
+  _TestRunnerState createState() => _TestRunnerState();
 }
 
-class _HottieTestRunnerState extends State<HotlyTestRunner> {
+class _TestRunnerState extends State<TestRunner> {
   late TestService service;
   bool showsOverlay = true;
 
@@ -68,12 +68,11 @@ class _HottieTestRunnerState extends State<HotlyTestRunner> {
                       showsOverlay = true;
                     });
                   },
-                  child: TestIndicator(key: Key('yeyeye'), results: service.value),
+                  child: TestIndicator(results: service.value),
                 ),
                 if (!service.value.ok && showsOverlay)
                   Positioned.fill(
                     child: TestResultsView(
-                      key: Key('randomKeyA'),
                       results: service.value,
                       onClose: () {
                         setState(() {
@@ -95,8 +94,7 @@ class TestResultsView extends StatelessWidget {
   final TestGroupResults results;
   final VoidCallback onClose;
 
-  const TestResultsView({required Key key, required this.results, required this.onClose})
-      : super(key: key);
+  const TestResultsView({super.key, required this.results, required this.onClose});
 
   Widget _buildError(TestResultError error) {
     return Padding(
@@ -144,7 +142,7 @@ class TestResultsView extends StatelessWidget {
 class TestIndicator extends StatelessWidget {
   final TestGroupResults results;
 
-  const TestIndicator({required Key key, required this.results}) : super(key: key);
+  const TestIndicator({super.key, required this.results});
 
   Widget buildStatusCircle({required bool ok}) {
     final color = ok ? Colors.green : Colors.red;
@@ -192,7 +190,11 @@ class TestIndicator extends StatelessWidget {
         padding: const EdgeInsets.only(left: 4, right: 4),
         child: Builder(
           builder: (context) {
-            return buildContent(context, results);
+            if (results != null) {
+              return buildContent(context, results);
+            } else {
+              return const SizedBox();
+            }
           },
         ),
       ),

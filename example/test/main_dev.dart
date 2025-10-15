@@ -1,20 +1,21 @@
-// lib/main_dev.dart
-import 'package:example/main.dart';
-import 'package:example/test.g.hotly/all_tests.dart';
-import 'package:flutter/material.dart';
-import 'package:hotly/hotly.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:hottie/hottie.dart';
+import 'package:example/main.dart' as m;
+
+import 'standard_test.dart' as t1;
+import 'widgets_test.dart' as t2;
+
+Future<void> main() async {
+  runApp(
+    TestRunner(main: testAll, child: m.MyApp()),
+  );
+}
 
 @pragma('vm:entry-point')
 void hottie() => hottieInner();
 
-void main() {
-  hottie();
-  runApp(
-    HotlyTestRunner(
-      key: Key('key'),
-      child: MyApp(),
-      main: allTests,
-      showIndicator: true,
-    ),
-  );
+void testAll() {
+  t1.main();
+  t2.main();
 }
