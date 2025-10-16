@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hottie/hottie.dart';
+import 'package:hotly/hotly.dart';
 import 'package:example/main.dart' as m;
 
 import 'standard_test.dart' as t1;
