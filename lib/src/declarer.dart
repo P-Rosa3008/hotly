@@ -27,26 +27,13 @@ void setTestDirectory(String root) {
 
 class MyReporter extends _Reporter {}
 
-/*Future<TestGroupResults> runTestsFromRawCallback(int input) {
-  final callback = PluginUtilities.getCallbackFromHandle(
-    CallbackHandle.fromRawHandle(input),
-  ) as TestMain?;
-  if (callback == null) {
-    throw ArgumentError('CallbackHandle could not be resolved');
-  }
-  return runTests(callback);
-}*/
-
 class _HotlyBinding extends AutomatedTestWidgetsFlutterBinding {
   @override
   void scheduleWarmUpFrame() {}
 }
 
 Future<TestGroupResults> runTests(TestMain input) async {
-  // Ensure a WidgetsBinding exists in this isolate. The instance getter throws
-// if not yet initialized, so we catch that and create our _HotlyBinding.
   try {
-    // Attempt to access the instance to see if it's initialized.
     WidgetsBinding.instance;
   } catch (_) {
     _HotlyBinding();

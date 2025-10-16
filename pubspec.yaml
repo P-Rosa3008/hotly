@@ -1,6 +1,6 @@
 name: hotly
 description: "A Flutter package for testing via an isolate improving performance."
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/P-Rosa3008/hotly
 
 environment:
@@ -9,6 +9,9 @@ environment:
 
 dependencies:
   flutter:
+    sdk: flutter
+  test_api: ^0.7.3
+  flutter_test:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
 
