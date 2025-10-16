@@ -1,23 +1,15 @@
-# Hotly
+# hotly
 
-Hotly is a Flutter package that provides a lightweight **test runner widget** for running unit, widget, or integration tests within your app. It supports both **in-process testing** and **isolated execution** via Dart isolates, giving you flexibility to run tests without blocking your main app.
+A new Flutter plugin project.
 
----
+## Getting Started
 
-## Features
+This project is a starting point for a Flutter
+[plug-in package](https://flutter.dev/to/develop-plugins),
+a specialized package that includes platform-specific implementation code for
+Android and/or iOS.
 
-- ✅ Run tests in-process or in a separate isolate
-- ✅ Visual test indicator overlay for quick feedback
-- ✅ View detailed test results with errors and stack traces
-- ✅ Compatible with Flutter apps, integrates with `WidgetsBinding`
-- ✅ Easy to integrate into existing apps without modifying test code
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
 
----
-
-## Installation
-
-Add this to your package’s `pubspec.yaml`:
-
-```yaml
-dependencies:
-  hotly: ^0.1.0

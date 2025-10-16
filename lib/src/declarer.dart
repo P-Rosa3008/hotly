@@ -20,7 +20,7 @@ import 'service.dart';
 var _hasTestDirectory = false;
 
 void setTestDirectory(String root) {
-  logHottie('current directory: $root');
+  logHotly('current directory: $root');
   Directory.current = root;
   _hasTestDirectory = true;
 }
@@ -37,19 +37,19 @@ class MyReporter extends _Reporter {}
   return runTests(callback);
 }*/
 
-class _HottieBinding extends AutomatedTestWidgetsFlutterBinding {
+class _HotlyBinding extends AutomatedTestWidgetsFlutterBinding {
   @override
   void scheduleWarmUpFrame() {}
 }
 
 Future<TestGroupResults> runTests(TestMain input) async {
   // Ensure a WidgetsBinding exists in this isolate. The instance getter throws
-// if not yet initialized, so we catch that and create our _HottieBinding.
+// if not yet initialized, so we catch that and create our _HotlyBinding.
   try {
     // Attempt to access the instance to see if it's initialized.
     WidgetsBinding.instance;
   } catch (_) {
-    _HottieBinding();
+    _HotlyBinding();
   }
 
   final sw = Stopwatch()..start();

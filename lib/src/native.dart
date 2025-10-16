@@ -3,21 +3,20 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'logger.dart';
 import 'declarer.dart';
 
-const _channel = MethodChannel('com.szotp.Hottie');
+const _channel = MethodChannel('com.szotp.Hotly');
 
 typedef IsolatedWorker<Input, Output> = Future<Output> Function(Input);
 
 class NativeService {
   static final instance = NativeService();
 
-  static const fromIsolateName = 'com.szotp.Hottie.fromIsolate';
-  static const toIsolateName = 'com.szotp.Hottie.toIsolate';
+  static const fromIsolateName = 'com.szotp.Hotly.fromIsolate';
+  static const toIsolateName = 'com.szotp.Hotly.toIsolate';
 
   ReceivePort fromIsolate = ReceivePort();
   SendPort? toIsolate;
@@ -47,8 +46,8 @@ class NativeService {
     final alreadyRunning = toIsolate != null;
 
     if (!alreadyRunning) {
-      final handle = PluginUtilities.getCallbackHandle(hottieInner);
-      if (handle == null) throw Exception('Failed to get hottieInner handle');
+      final handle = PluginUtilities.getCallbackHandle(hotlyInner);
+      if (handle == null) throw Exception('Failed to get hotlyInner handle');
 
       Map<dynamic, dynamic> results = {};
       try {
@@ -57,7 +56,7 @@ class NativeService {
           {'handle': handle.toRawHandle()},
         ) as Map<dynamic, dynamic>;
       } on MissingPluginException {
-        logHottie('[hottie] ⚠️ No native plugin found, using fallback initialization');
+        logHotly('[hotly] ⚠️ No native plugin found, using fallback initialization');
         results = {'root': Directory.current.path};
       }
 
@@ -78,7 +77,7 @@ class NativeService {
         assert(Directory(msg.root).existsSync(),
         "Directory ${msg.root} doesn't exist");
       } else {
-        logHottie('running without file access');
+        logHotly('running without file access');
       }
     }
 
@@ -128,17 +127,17 @@ void _registerPort(SendPort port, String name) {
 }
 
 @pragma('vm:entry-point')
-Future<void> hottieInner() async {
+Future<void> hotlyInner() async {
   //TestWidgetsFlutterBinding.ensureInitialized();
-  logHottie('🔥 hottieInner started');
-  window.setIsolateDebugName('hottie');
+  logHotly('🔥 hotlyInner started');
+  window.setIsolateDebugName('hotly');
 
   final toIsolate = ReceivePort();
   _registerPort(toIsolate.sendPort, NativeService.toIsolateName);
 
   if (Platform.isMacOS) await Future.delayed(const Duration(milliseconds: 500));
 
-  logHottie('✅ hottieInner waiting for events...');
+  logHotly('✅ hotlyInner waiting for events...');
 
   await for (final event in toIsolate) {
     try {
@@ -158,7 +157,7 @@ Future<void> hottieInner() async {
         setTestDirectory(event.root);
       }
     } catch (e, st) {
-      logHottie('❌ hottieInner error: $e\n$st');
+      logHotly('❌ hotlyInner error: $e\n$st');
     }
   }
 }

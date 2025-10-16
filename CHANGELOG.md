@@ -1,6 +1,5 @@
-# Changelog
+## 1.0.0
 
-## 0.1.0 - 2025-10-07
 - Initial release of hotly
-- Exposes `HottieTestRunner` widget for embedding in Flutter apps
-- Supports isolated test execution
+- Exposes `TestRunner` widget for embedding in Flutter apps
+- Supports isolated test and testWidget execution

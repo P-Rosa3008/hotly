@@ -1,5 +1,5 @@
 import 'dart:developer' as d;
 
-void logHottie(String message) {
-  d.log(message, name: 'hottie');
+void logHotly(String message) {
+  d.log(message, name: 'hotly');
 }

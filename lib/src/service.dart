@@ -62,7 +62,7 @@ class _SeparateEngineService extends TestService {
 
       final handle = PluginUtilities.getCallbackHandle(main);
       if (handle == null) {
-        debugPrint('[hottie] ❌ Failed to get callback handle for test main');
+        debugPrint('[hotly] ❌ Failed to get callback handle for test main');
         return;
       }
 
@@ -71,7 +71,7 @@ class _SeparateEngineService extends TestService {
 
       update(TestGroupResults.fromMap(resultMap));
     } catch (e, st) {
-      debugPrint('[hottie] ❌ retest() crashed: $e\n$st');
+      debugPrint('[hotly] ❌ retest() crashed: $e\n$st');
     }
   }
 }

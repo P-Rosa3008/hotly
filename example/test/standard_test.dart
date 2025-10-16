@@ -1,13 +1,12 @@
 import 'dart:io';
 
-import 'package:example/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 const shouldFail = bool.fromEnvironment('shouldFail');
 
 void main() {
   test('test add 1', () async {
-    expect(add(1, 1), 3);
+    expect(1 + 1, 3);
   });
 
   test('test asserts', () async {
