@@ -64,5 +64,5 @@ class TestGroupResults {
   );
 
   @override
-  String toString() => '🧪 ${passedCount} / ${totalCount}';
+  String toString() => '🧪 $passedCount / $totalCount';
 }

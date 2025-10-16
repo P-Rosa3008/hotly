@@ -180,7 +180,7 @@ class TestIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = MediaQueryData.fromWindow(WidgetsBinding.instance.window);
+    final data = MediaQueryData.fromView(WidgetsBinding.instance.window);
 
     return Align(
       alignment: Alignment.bottomLeft,
@@ -190,12 +190,8 @@ class TestIndicator extends StatelessWidget {
         padding: const EdgeInsets.only(left: 4, right: 4),
         child: Builder(
           builder: (context) {
-            if (results != null) {
-              return buildContent(context, results);
-            } else {
-              return const SizedBox();
-            }
-          },
+            return buildContent(context, results);
+                    },
         ),
       ),
     );
