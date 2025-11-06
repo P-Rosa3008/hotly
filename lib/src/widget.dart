@@ -185,13 +185,12 @@ class TestIndicator extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomLeft,
       child: Container(
-        margin:
-            EdgeInsets.only(left: max(data.padding.bottom - 8, 4), bottom: 4),
+        margin: EdgeInsets.only(left: max(data.padding.bottom - 8, 4), bottom: 4),
         padding: const EdgeInsets.only(left: 4, right: 4),
         child: Builder(
           builder: (context) {
             return buildContent(context, results);
-                    },
+          },
         ),
       ),
     );

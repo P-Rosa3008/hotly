@@ -54,7 +54,7 @@ class NativeService {
         results = await _channel.invokeMethod(
           'initialize',
           {'handle': handle.toRawHandle()},
-        ) as Map<dynamic, dynamic>;
+        );
       } on MissingPluginException {
         logHotly('[hotly] ⚠️ No native plugin found, using fallback initialization');
         results = {'root': Directory.current.path};
@@ -74,8 +74,7 @@ class NativeService {
           'root': root,
         });
 
-        assert(Directory(msg.root).existsSync(),
-        "Directory ${msg.root} doesn't exist");
+        assert(Directory(msg.root).existsSync(), "Directory ${msg.root} doesn't exist");
       } else {
         logHotly('running without file access');
       }
@@ -150,8 +149,7 @@ Future<void> hotlyInner() async {
 
         final result = await worker!(payload);
 
-        final fromIsolate =
-        IsolateNameServer.lookupPortByName(NativeService.fromIsolateName);
+        final fromIsolate = IsolateNameServer.lookupPortByName(NativeService.fromIsolateName);
         fromIsolate?.send(result);
       } else if (event is _SetCurrentDirectoryMessage) {
         setTestDirectory(event.root);

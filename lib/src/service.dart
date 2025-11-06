@@ -8,13 +8,11 @@ import 'native.dart';
 
 /// Called from a native isolate. Reconstructs the callback from handle.
 Future<Map<String, dynamic>> runTestsFromRawCallback(int handle) async {
-  final callback = PluginUtilities.getCallbackFromHandle(
-      CallbackHandle.fromRawHandle(handle)) as void Function();
+  final callback = PluginUtilities.getCallbackFromHandle(CallbackHandle.fromRawHandle(handle)) as void Function();
 
   final result = await runTests(callback);
   return result.toMap();
 }
-
 
 typedef TestMain = void Function();
 
